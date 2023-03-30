@@ -17,7 +17,7 @@ public class MongoAuthorRepository implements AuthorRepository {
     private final Datastore datastore;
 
     public MongoAuthorRepository() {
-        MongoClient client = MongoClients.create("mongodb+srv://root:root@library.opi4oej.mongodb.net/?retryWrites=true&w=majority");
+        MongoClient client = MongoClients.create(System.getenv("MONGO_URL"));
         datastore = Morphia.createDatastore(client, "library");
         datastore.getMapper().mapPackage("ulaval.glo2003");
         datastore.ensureIndexes();
